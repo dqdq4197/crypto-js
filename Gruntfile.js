@@ -25,7 +25,9 @@ module.exports = function (grunt) {
                 testAll: 'test/**/*',
 
                 npm: 'node_modules/',
-                npmAll: 'node_modules/**/*'
+                npmAll: 'node_modules/**/*',
+
+                types: '@types/'
             }
         }
     });

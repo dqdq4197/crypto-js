@@ -2,7 +2,7 @@
   "name": "@leo-util/crypto-js",
   "title": "crypto-js",
   "description": "JavaScript library of crypto standards.",
-  "version": "4.2.7",
+  "version": "4.3.0",
   "homepage": "https://github.com/dqdq4197/crypto-js",
   "author": {
     "name": "leo-util",

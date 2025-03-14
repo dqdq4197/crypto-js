@@ -2,21 +2,30 @@
 
 JavaScript library of crypto standards.
 
-## Discontinued
+### About This Package
 
-Active development of CryptoJS has been discontinued. This library is no longer maintained.
+This package is a fork of [crypto-js](https://github.com/brix/crypto-js), with added support for SEED encryption and Type Definitions, and has been republished as a separate library.
 
-Nowadays, NodeJS and modern browsers have a native `Crypto` module. The latest version of CryptoJS already uses the native Crypto module for random number generation, since `Math.random()` is not crypto-safe. Further development of CryptoJS would result in it only being a wrapper of native Crypto. Therefore, development and maintenance has been discontinued, it is time to go for the native `crypto` module.
+#### 🔹 Enhancements & Fixes
+1. Fixed Typo in `AnsiX923` Padding Module
+   - Resolved an issue where a typo in the `AnsiX923` padding module prevented it from functioning correctly in the original `crypto-js`.
+2. Added SEED Algorithm Module
+   - Integrated the `SEED` encryption algorithm, which is not included in the original `crypto-js`, from an [external package](https://github.com/tomyun/crypto-js).
+3. Included Type Definitions
+   - Eliminates the need to install `@types/crypto-js` separately, as Type Definitions are now bundled within this package.
+
+🔹 Why This Package?
+
+The native Crypto module in Node.js does not support `SEED` encryption, making it necessary to extend crypto-js to provide this functionality. This package allows developers to use `SEED` encryption seamlessly in their projects. 🚀
 
 ## Node.js (Install)
 
 Requirements:
 
 - Node.js
-- npm (Node.js package manager)
 
-```bash
-npm install @leo-util/crypto-js
+```
+$ npm install @leo-util/crypto-js
 ```
 
 ### Usage
@@ -36,8 +45,8 @@ const hmacDigest = Base64.stringify(hmacSHA512(path + hashDigest, privateKey));
 Modular include:
 
 ```typescript
-var AES = require("@leo-util/crypto-js/aes");
-var SHA256 = require("@leo-util/crypto-js/sha256");
+const AES = require("@leo-util/crypto-js/aes");
+const SHA256 = require("@leo-util/crypto-js/sha256");
 ...
 console.log(SHA256("Message"));
 ```
@@ -49,71 +58,39 @@ const CryptoJS = require("@leo-util/crypto-js");
 console.log(CryptoJS.HmacSHA1("Message", "Key"));
 ```
 
-## Client (browser)
-
-Requirements:
-
-- Node.js
-- Bower (package manager for frontend)
-
-```bash
-bower install @leo-util/crypto-js
-```
-
-### Usage
-
-Modular include:
-
-```javascript
-require.config({
-    packages: [
-        {
-            name: 'crypto-js',
-            location: 'path-to/bower_components/crypto-js',
-            main: 'index'
-        }
-    ]
-});
-
-require(["crypto-js/aes", "crypto-js/sha256"], function (AES, SHA256) {
-    console.log(SHA256("Message"));
-});
-```
-
-Including all libraries, for access to extra methods:
-
-```javascript
-// Above-mentioned will work or use this simple form
-require.config({
-    paths: {
-        'crypto-js': 'path-to/bower_components/crypto-js/crypto-js'
-    }
-});
-
-require(["crypto-js"], function (CryptoJS) {
-    console.log(CryptoJS.HmacSHA1("Message", "Key"));
-});
-```
-
-### Usage without RequireJS
-
-```html
-<script type="text/javascript" src="path-to/bower_components/crypto-js/crypto-js.js"></script>
-<script type="text/javascript">
-    var encrypted = CryptoJS.AES(...);
-    var encrypted = CryptoJS.SHA256(...);
-</script>
-```
-
 ## API
 
 See: https://cryptojs.gitbook.io/docs/
+
+### SEED Encryption
+
+#### Plain text encryption
+
+```typescript
+const CryptoJS = require("@leo-util/crypto-js");
+
+// Encrypt
+const ciphertext = CryptoJS.SEED.encrypt('my message', 'secret key 123', {
+  mode: CryptoJS.mode.ECB, // CryptoJS.mode.CBC, ...
+  padding: CryptoJS.pad.ZeroPadding, // CryptoJS.pad.Pkcs7, ...
+  // iv...
+});
+
+// Decrypt
+const bytes  = CryptoJS.SEED.decrypt(ciphertext, 'secret key 123', {
+  mode: CryptoJS.mode.ECB
+  padding: CryptoJS.pad.ZeroPadding
+});
+const originalText = bytes.toString(CryptoJS.enc.Utf8);
+
+console.log(originalText); // 'my message'
+```
 
 ### AES Encryption
 
 #### Plain text encryption
 
-```javascript
+```typescript
 const CryptoJS = require("@leo-util/crypto-js");
 
 // Encrypt
@@ -128,7 +105,7 @@ console.log(originalText); // 'my message'
 
 #### Object encryption
 
-```javascript
+```typescript
 const CryptoJS = require("@leo-util/crypto-js");
 
 const data = [{id: 1}, {id: 2}]
@@ -179,6 +156,7 @@ console.log(decryptedData); // [{id: 1}, {id: 2}]
 ---
 
 - ```@leo-util/crypto-js/aes```
+- - ```@leo-util/crypto-js/seed```
 - ```@leo-util/crypto-js/tripledes```
 - ```@leo-util/crypto-js/rc4```
 - ```@leo-util/crypto-js/rabbit```

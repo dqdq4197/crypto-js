@@ -16,17 +16,17 @@ Requirements:
 - npm (Node.js package manager)
 
 ```bash
-npm install crypto-js
+npm install @leo-util/crypto-js
 ```
 
 ### Usage
 
 ES6 import for typical API call signing use case:
 
-```javascript
-import sha256 from 'crypto-js/sha256';
-import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
+```typescript
+import sha256 from '@leo-util/crypto-js/sha256';
+import hmacSHA512 from '@leo-util/crypto-js/hmac-sha512';
+import Base64 from '@leo-util/crypto-js/enc-base64';
 
 const message, nonce, path, privateKey; // ...
 const hashDigest = sha256(nonce + message);
@@ -35,17 +35,17 @@ const hmacDigest = Base64.stringify(hmacSHA512(path + hashDigest, privateKey));
 
 Modular include:
 
-```javascript
-var AES = require("crypto-js/aes");
-var SHA256 = require("crypto-js/sha256");
+```typescript
+var AES = require("@leo-util/crypto-js/aes");
+var SHA256 = require("@leo-util/crypto-js/sha256");
 ...
 console.log(SHA256("Message"));
 ```
 
 Including all libraries, for access to extra methods:
 
-```javascript
-var CryptoJS = require("crypto-js");
+```typescript
+const CryptoJS = require("@leo-util/crypto-js");
 console.log(CryptoJS.HmacSHA1("Message", "Key"));
 ```
 
@@ -57,7 +57,7 @@ Requirements:
 - Bower (package manager for frontend)
 
 ```bash
-bower install crypto-js
+bower install @leo-util/crypto-js
 ```
 
 ### Usage
@@ -114,14 +114,14 @@ See: https://cryptojs.gitbook.io/docs/
 #### Plain text encryption
 
 ```javascript
-var CryptoJS = require("crypto-js");
+const CryptoJS = require("@leo-util/crypto-js");
 
 // Encrypt
-var ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
+const ciphertext = CryptoJS.AES.encrypt('my message', 'secret key 123').toString();
 
 // Decrypt
-var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-var originalText = bytes.toString(CryptoJS.enc.Utf8);
+const bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+const originalText = bytes.toString(CryptoJS.enc.Utf8);
 
 console.log(originalText); // 'my message'
 ```
@@ -129,16 +129,16 @@ console.log(originalText); // 'my message'
 #### Object encryption
 
 ```javascript
-var CryptoJS = require("crypto-js");
+const CryptoJS = require("@leo-util/crypto-js");
 
-var data = [{id: 1}, {id: 2}]
+const data = [{id: 1}, {id: 2}]
 
 // Encrypt
-var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
+const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(data), 'secret key 123').toString();
 
 // Decrypt
-var bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
-var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+const bytes  = CryptoJS.AES.decrypt(ciphertext, 'secret key 123');
+const decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
 
 console.log(decryptedData); // [{id: 1}, {id: 2}]
 ```
@@ -146,74 +146,74 @@ console.log(decryptedData); // [{id: 1}, {id: 2}]
 ### List of modules
 
 
-- ```crypto-js/core```
-- ```crypto-js/x64-core```
-- ```crypto-js/lib-typedarrays```
+- ```@leo-util/crypto-js/core```
+- ```@leo-util/crypto-js/x64-core```
+- ```@leo-util/crypto-js/lib-typedarrays```
 
 ---
 
-- ```crypto-js/md5```
-- ```crypto-js/sha1```
-- ```crypto-js/sha256```
-- ```crypto-js/sha224```
-- ```crypto-js/sha512```
-- ```crypto-js/sha384```
-- ```crypto-js/sha3```
-- ```crypto-js/ripemd160```
+- ```@leo-util/crypto-js/md5```
+- ```@leo-util/crypto-js/sha1```
+- ```@leo-util/crypto-js/sha256```
+- ```@leo-util/crypto-js/sha224```
+- ```@leo-util/crypto-js/sha512```
+- ```@leo-util/crypto-js/sha384```
+- ```@leo-util/crypto-js/sha3```
+- ```@leo-util/crypto-js/ripemd160```
 
 ---
 
-- ```crypto-js/hmac-md5```
-- ```crypto-js/hmac-sha1```
-- ```crypto-js/hmac-sha256```
-- ```crypto-js/hmac-sha224```
-- ```crypto-js/hmac-sha512```
-- ```crypto-js/hmac-sha384```
-- ```crypto-js/hmac-sha3```
-- ```crypto-js/hmac-ripemd160```
+- ```@leo-util/crypto-js/hmac-md5```
+- ```@leo-util/crypto-js/hmac-sha1```
+- ```@leo-util/crypto-js/hmac-sha256```
+- ```@leo-util/crypto-js/hmac-sha224```
+- ```@leo-util/crypto-js/hmac-sha512```
+- ```@leo-util/crypto-js/hmac-sha384```
+- ```@leo-util/crypto-js/hmac-sha3```
+- ```@leo-util/crypto-js/hmac-ripemd160```
 
 ---
 
-- ```crypto-js/pbkdf2```
+- ```@leo-util/crypto-js/pbkdf2```
 
 ---
 
-- ```crypto-js/aes```
-- ```crypto-js/tripledes```
-- ```crypto-js/rc4```
-- ```crypto-js/rabbit```
-- ```crypto-js/rabbit-legacy```
-- ```crypto-js/evpkdf```
+- ```@leo-util/crypto-js/aes```
+- ```@leo-util/crypto-js/tripledes```
+- ```@leo-util/crypto-js/rc4```
+- ```@leo-util/crypto-js/rabbit```
+- ```@leo-util/crypto-js/rabbit-legacy```
+- ```@leo-util/crypto-js/evpkdf```
 
 ---
 
-- ```crypto-js/format-openssl```
-- ```crypto-js/format-hex```
+- ```@leo-util/crypto-js/format-openssl```
+- ```@leo-util/crypto-js/format-hex```
 
 ---
 
-- ```crypto-js/enc-latin1```
-- ```crypto-js/enc-utf8```
-- ```crypto-js/enc-hex```
-- ```crypto-js/enc-utf16```
-- ```crypto-js/enc-base64```
+- ```@leo-util/crypto-js/enc-latin1```
+- ```@leo-util/crypto-js/enc-utf8```
+- ```@leo-util/crypto-js/enc-hex```
+- ```@leo-util/crypto-js/enc-utf16```
+- ```@leo-util/crypto-js/enc-base64```
 
 ---
 
-- ```crypto-js/mode-cfb```
-- ```crypto-js/mode-ctr```
-- ```crypto-js/mode-ctr-gladman```
-- ```crypto-js/mode-ofb```
-- ```crypto-js/mode-ecb```
+- ```@leo-util/crypto-js/mode-cfb```
+- ```@leo-util/crypto-js/mode-ctr```
+- ```@leo-util/crypto-js/mode-ctr-gladman```
+- ```@leo-util/crypto-js/mode-ofb```
+- ```@leo-util/crypto-js/mode-ecb```
 
 ---
 
-- ```crypto-js/pad-pkcs7```
-- ```crypto-js/pad-ansix923```
-- ```crypto-js/pad-iso10126```
-- ```crypto-js/pad-iso97971```
-- ```crypto-js/pad-zeropadding```
-- ```crypto-js/pad-nopadding```
+- ```@leo-util/crypto-js/pad-pkcs7```
+- ```@leo-util/crypto-js/pad-ansix923```
+- ```@leo-util/crypto-js/pad-iso10126```
+- ```@leo-util/crypto-js/pad-iso97971```
+- ```@leo-util/crypto-js/pad-zeropadding```
+- ```@leo-util/crypto-js/pad-nopadding```
 
 
 ## Release notes

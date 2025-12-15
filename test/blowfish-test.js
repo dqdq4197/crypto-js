@@ -1,4 +1,4 @@
-YUI.add('algo-aes-test', function (Y) {
+YUI.add('algo-blowfish-test', function (Y) {
     var C = CryptoJS;
 
     Y.Test.Runner.add(new Y.Test.Case({
